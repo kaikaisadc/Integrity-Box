@@ -35,13 +35,16 @@ jobs:
 
       - name: Build modern artifacts (integrity-box branch)
         working-directory: PlayIntegrityFork
-        run: ./gradlew :app:assembleRelease --no-daemon
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --no-daemon
 
       - name: Build legacy artifacts (legacy branch)
         run: |
           git clone --depth 1 --branch legacy \
             https://github.com/MeowDump/PlayIntegrityFork.git "$RUNNER_TEMP/pif-legacy"
           cd "$RUNNER_TEMP/pif-legacy"
+          chmod +x gradlew
           ./gradlew :app:assembleRelease --no-daemon
 
       - name: Package module zip
