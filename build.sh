@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 #
 # Assembles the flashable Integrity-Box module zip.
 #
