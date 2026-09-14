@@ -166,10 +166,13 @@ else
 	echo "warning: --legacy-artifacts not given, packaging without the x86 fallback" >&2
 fi
 
-# sha256 manifest used by verify.sh inside the installed module.
+# sha256 manifest used by verify.sh inside the installed module. META-INF and
+# apps.txt are left out on purpose: the root manager does not copy META-INF into
+# the installed module directory, so hashing them would fail the on-device check.
 (
 	cd "$STAGE"
-	find . -type f ! -name hash | sed 's|^\./||' | LC_ALL=C sort |
+	find . -type f ! -name hash ! -name apps.txt ! -path './META-INF/*' |
+		sed 's|^\./||' | LC_ALL=C sort |
 		while IFS= read -r rel; do
 			printf '%s|%s\n' "$rel" "$(sha256sum "$rel" | cut -d' ' -f1)"
 		done >hash
