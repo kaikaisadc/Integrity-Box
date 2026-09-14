@@ -28,7 +28,7 @@ jobs:
         run: |
           yes | "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
           "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" \
-            "platforms;android-37" \
+            "platforms;android-37.0" \
             "build-tools;37.0.0" \
             "ndk;29.0.14206865" \
             "cmake;3.22.1"
