@@ -41,7 +41,7 @@ jobs:
 
       - name: Build legacy artifacts (legacy branch)
         run: |
-          git clone --depth 1 --branch legacy \
+          git clone --depth 1 --branch legacy --recurse-submodules --shallow-submodules \
             https://github.com/MeowDump/PlayIntegrityFork.git "$RUNNER_TEMP/pif-legacy"
           cd "$RUNNER_TEMP/pif-legacy"
           chmod +x gradlew
